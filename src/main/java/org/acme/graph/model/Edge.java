@@ -33,6 +33,11 @@ public class Edge {
 	 */
 	private Vertex target;
 
+	/**
+	 * Segment représentant un tronçons
+	 */
+	LineString geometry;
+
 	Edge(Vertex source, Vertex target) {
 		this.source = source;
 		this.target = target;
@@ -57,10 +62,6 @@ public class Edge {
 		return source;
 	}
 
-	public void setSource(Vertex source) {
-		this.source = source;
-	}
-
 	/**
 	 * Cible avec rendu JSON sous forme d'identifiant
 	 * 
@@ -70,10 +71,6 @@ public class Edge {
 	@JsonIdentityReference(alwaysAsId = true)
 	public Vertex getTarget() {
 		return target;
-	}
-
-	public void setTarget(Vertex target) {
-		this.target = target;
 	}
 
 	/**
@@ -92,6 +89,10 @@ public class Edge {
 			source.getCoordinate(),
 			target.getCoordinate()
 		});
+	}
+
+	public void setGeometry(LineString geometry) {
+		this.geometry = geometry;
 	}
 
 	@Override
