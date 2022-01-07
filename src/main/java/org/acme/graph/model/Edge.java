@@ -85,10 +85,9 @@ public class Edge {
 	public double getCost() {
 
 		if (geometry == null) {
-			return 0.0;
-		} else {
-			return geometry.getLength();
+			geometry = getGeometry();
 		}
+		return geometry.getLength();
 	}
 
 	@JsonSerialize(using = GeometrySerializer.class)

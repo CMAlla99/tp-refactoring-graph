@@ -1,12 +1,13 @@
 package org.acme.graph.routing;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.acme.graph.errors.NotFoundException;
 import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
+import org.acme.graph.model.Path;
 import org.acme.graph.model.Vertex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +36,7 @@ public class DijkstraPathFinder {
 	 * @param destination
 	 * @return
 	 */
-	public List<Edge> findPath(Vertex origin, Vertex destination) {
+	public Path findPath(Vertex origin, Vertex destination) {
 		initGraph(origin);
 		Vertex current;
 		while ((current = findNextVertex()) != null) {
@@ -83,7 +84,7 @@ public class DijkstraPathFinder {
 	 * @param target
 	 * @return
 	 */
-	private List<Edge> buildPath(Vertex target) {
+	private Path buildPath(Vertex target) {
 		List<Edge> result = new ArrayList<>();
 
 		Edge current = target.getReachingEdge();
@@ -93,7 +94,7 @@ public class DijkstraPathFinder {
 		} while (current != null);
 
 		Collections.reverse(result);
-		return result;
+		return new Path(result);
 	}
 
 	/**

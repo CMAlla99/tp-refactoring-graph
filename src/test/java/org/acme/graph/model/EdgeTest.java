@@ -23,7 +23,7 @@ public class EdgeTest {
 		Vertex v1 = new Vertex(new Coordinate(1.0, 1.0), "1");
         Vertex v2 = new Vertex(new Coordinate(3.0, 1.0), "2");
 		Edge e = new Edge(v1, v2);
-		Assert.assertEquals(0.0, e.getCost(), EPSILON);
+		Assert.assertEquals(2.0, e.getCost(), EPSILON);
 	}
 
 	@Test

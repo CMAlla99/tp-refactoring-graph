@@ -12,6 +12,15 @@ public class Path {
     }
 
     /**
+     *  Renvoyer la liste des arcs
+     * 
+     * @return
+     */
+    public List<Edge> getEdges() {
+        return this.edges;
+    }
+
+    /**
      * Calculer la longueur des edges
      * 
      * @return double
@@ -20,7 +29,7 @@ public class Path {
         double length = 0.0;
 
         for (Edge e : this.edges) {
-            length += e.geometry.getLength();
+            length += e.getCost();
         }
         return length;
     }
