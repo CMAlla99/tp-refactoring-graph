@@ -3,7 +3,6 @@ package org.acme.graph.model;
 import org.junit.Assert;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.LineString;
 
 public class EdgeTest {
 

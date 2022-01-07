@@ -3,6 +3,9 @@ package org.acme.graph.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.locationtech.jts.geom.Coordinate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * Un sommet dans un graphe
@@ -34,6 +37,18 @@ public class Vertex {
 	 * dijkstra - indique si le sommet est visité
 	 */
 	private boolean visited;
+
+	/**
+	 * dijkstra - liste des arcs entrants 
+	 */
+	@JsonIgnore
+	private List<Edge> inEdges = new ArrayList<>();;
+
+	/**
+	 * dijkstra - liste des arcs sortants 
+	 */
+	@JsonIgnore
+	private List<Edge> outEdges = new ArrayList<>();;
 
 	Vertex() {
 	}
@@ -83,6 +98,14 @@ public class Vertex {
 
 	public void setVisited(boolean visited) {
 		this.visited = visited;
+	}
+
+	public List<Edge> getInEdges() {
+		return inEdges;
+	}
+
+	public List<Edge> getOutEdges() {
+		return outEdges;
 	}
 
 	@Override

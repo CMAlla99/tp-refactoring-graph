@@ -41,6 +41,10 @@ public class Edge {
 	Edge(Vertex source, Vertex target) {
 		this.source = source;
 		this.target = target;
+
+		// Remplissage automatique
+		source.getOutEdges().add(this);
+		target.getInEdges().add(this);
 	}
 
 	public String getId() {
