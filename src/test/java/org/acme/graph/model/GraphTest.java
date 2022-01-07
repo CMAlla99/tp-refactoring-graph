@@ -14,6 +14,13 @@ import org.locationtech.jts.geom.Coordinate;
 public class GraphTest {
 
 	@Test
+	public void testConstructor(){
+
+        Graph g = new Graph();
+		Assert.assertEquals(0, g.getEdges().size());
+	}
+
+	@Test
 	public void testFindVertexById() {
 		Vertex v = TestGraphFactory.createGraph01().findVertex("a");
 		assertNotNull(v);
