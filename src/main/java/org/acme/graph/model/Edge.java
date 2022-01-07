@@ -79,13 +79,18 @@ public class Edge {
 	 * @return
 	 */
 	public double getCost() {
-		return geometry.getLength();
+
+		if (geometry == null) {
+			return 0.0;
+		} else {
+			return geometry.getLength();
+		}
 	}
 
 	@JsonSerialize(using = GeometrySerializer.class)
 	public LineString getGeometry() {
 
-		if (this.geometry.isEmpty()) {
+		if (this.geometry == null) {
 			GeometryFactory gf = new GeometryFactory();
 			return gf.createLineString(new Coordinate[] {
 				source.getCoordinate(),

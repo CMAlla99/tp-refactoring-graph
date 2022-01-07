@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.acme.graph.model.Edge;
 import org.acme.graph.model.Graph;
 import org.acme.graph.model.Vertex;
 import org.geotools.data.DataStore;
@@ -80,6 +81,9 @@ public class GraphReader {
 		/* Récupération de la géométrie dans le sens direct */
 		LineString geometry = toLineString(feature);
 
+		/* Récupération de la géométrie dans le sens indirect */
+		LineString reverseGeometry = geometry.reverse();
+
 		/* Création ou récupération des sommets initiaux et finaux */
 		Vertex source = graph.getOrCreateVertex(geometry.getStartPoint().getCoordinate());
 		Vertex target = graph.getOrCreateVertex(geometry.getEndPoint().getCoordinate());
@@ -89,11 +93,13 @@ public class GraphReader {
 
 		/* Création de l'arc pour le parcours en sens direct */
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_DIRECT)) {
-			graph.createEdge(source, target, id + "-direct");
+			Edge edgeDirect = graph.createEdge(source, target, id + "-direct");
+			edgeDirect.setGeometry(geometry);
 		}
 		if (sens.equals(DOUBLE_SENS) || sens.equals(SENS_INVERSE)) {
 			/* Création de l'arc pour le parcours en sens opposé */
-			graph.createEdge(target, source, id + "-reverse");
+			Edge edgeReverse = graph.createEdge(target, source, id + "-reverse");
+			edgeReverse.setGeometry(reverseGeometry);
 		}
 	}
 
@@ -114,4 +120,5 @@ public class GraphReader {
 			throw new RuntimeException("Unsupported geometry type : " + geometry.getGeometryType());
 		}
 	}
+
 }
