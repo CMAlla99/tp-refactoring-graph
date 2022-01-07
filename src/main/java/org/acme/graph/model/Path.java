@@ -3,6 +3,9 @@ package org.acme.graph.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Un path matérialisé par une liste d'arc
+ */
 public class Path {
 
     private List<Edge> edges = new ArrayList<>();
